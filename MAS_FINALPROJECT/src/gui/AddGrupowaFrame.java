@@ -1,0 +1,237 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+import classes.Indywidualna;
+
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import enumy.TypLekcja;
+import enumy.RodzajGrupa;
+
+public class AddGrupowaFrame extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JButton btnZatwierdz;
+	private JButton btnWr;
+	private JComboBox comboBox;
+	private JComboBox comboBox_1;
+
+	/**
+	 * Create the frame.
+	 * 
+	 * @param height
+	 * @param width
+	 * @param rectangle
+	 */
+	public AddGrupowaFrame(int width, int height, int x1, int x2, int x3, int x4) {
+		initComponents(width, height, x1, x2, x3, x4);
+		createEvents();
+	}
+
+	private void initComponents(int width, int height, int x1, int x2, int x3, int x4) {
+		// TODO Auto-generated method stub
+		setTitle("Dodaj lekcje grupową");
+		setPreferredSize(new Dimension(width + 16, height + 39));
+		setMinimumSize(new Dimension(500, 400));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(x1, x2, x3, x4);
+		setVisible(true);
+		pack();
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+
+		JLabel lblSystemZarzdzaniaSzko = new JLabel("Wprowadz dane dla nowej lekcji grupowej", SwingConstants.CENTER);
+
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Dane", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup().addContainerGap()
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+								.addComponent(lblSystemZarzdzaniaSzko, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 454,
+										Short.MAX_VALUE))
+						.addContainerGap()));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(lblSystemZarzdzaniaSzko)
+						.addGap(18).addComponent(panel, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+						.addContainerGap()));
+
+		JLabel lblNewLabel = new JLabel("Cena:");
+
+		JLabel lblNewLabel_1 = new JLabel("Typ:");
+
+		JLabel lblTelefon = new JLabel("Spot:");
+
+		JLabel lblStawka = new JLabel("Numer:");
+
+		JLabel lblStopie = new JLabel("Rodzaj:");
+
+		textField = new JTextField();
+		textField.setColumns(10);
+
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+
+		btnWr = new JButton("Wróć");
+
+		btnZatwierdz = new JButton("Zatwierdz");
+
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(TypLekcja.values()));
+
+		comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(RodzajGrupa.values()));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
+				.createSequentialGroup().addContainerGap()
+				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createSequentialGroup()
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addComponent(lblTelefon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addComponent(lblStawka, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addComponent(lblStopie, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(textField, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+										.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+										.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+										.addComponent(comboBox, 0, 377, Short.MAX_VALUE)
+										.addComponent(comboBox_1, 0, 381, Short.MAX_VALUE)))
+						.addGroup(gl_panel.createSequentialGroup().addComponent(btnZatwierdz)
+								.addPreferredGap(ComponentPlacement.RELATED, 284, Short.MAX_VALUE).addComponent(btnWr)))
+				.addContainerGap()));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
+				.createSequentialGroup().addContainerGap()
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblNewLabel).addComponent(
+						textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGap(16)
+				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(lblNewLabel_1).addComponent(
+						comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGap(18)
+				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(lblTelefon).addComponent(
+						textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGap(18)
+				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(lblStawka).addComponent(
+						textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGap(18)
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblStopie).addComponent(
+						comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+				.addGroup(
+						gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnWr).addComponent(btnZatwierdz))
+				.addContainerGap()));
+		panel.setLayout(gl_panel);
+		contentPane.setLayout(gl_contentPane);
+	}
+
+	private void createEvents() {
+		btnWr.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TypLekcjaFrame frame = new TypLekcjaFrame(getContentPane().getSize().width,
+						getContentPane().getSize().height, getContentPane().getBounds().x,
+						getContentPane().getBounds().y, getContentPane().getBounds().width,
+						getContentPane().getBounds().height);
+				dispose();
+			}
+		});
+
+		btnZatwierdz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				boolean flag = true;
+
+				try {
+					if (!textField.getText().matches(".*\\d.*")) {
+						throw new Exception();
+					}
+				} catch (Exception ex) {
+					flag = false;
+					JOptionPane.showMessageDialog(null, " Cena może zawierać tylko cyfry");
+				}
+
+				try {
+					if (textField_2.getText().length() == 0) {
+						throw new Exception();
+					}
+				} catch (Exception ex) {
+					flag = false;
+					JOptionPane.showMessageDialog(null, "Spot musi zawierać znaki");
+				}
+
+				try {
+					if (textField_3.getText().length() == 0) {
+						throw new Exception();
+					}
+				} catch (Exception ex) {
+					flag = false;
+					JOptionPane.showMessageDialog(null, "Numer musi zawierać znaki");
+				}
+
+				TypLekcja type;
+				if (comboBox.getSelectedIndex() == 0) {
+					type = TypLekcja.GODZINA;
+				} else if (comboBox.getSelectedIndex() == 0) {
+					type = TypLekcja.SZESC_GODZIN;
+				} else {
+					type = TypLekcja.DZIESIEC_GODZIN;
+				}
+
+				RodzajGrupa grupa;
+				if (comboBox_1.getSelectedIndex() == 0) {
+					grupa = RodzajGrupa.PODSTAWOWA;
+				} else if (comboBox_1.getSelectedIndex() == 1) {
+					grupa = RodzajGrupa.SREDNIOZAAWANSOWANA;
+				} else {
+					grupa = RodzajGrupa.ZAAWANSOWANA;
+				}
+
+				if (flag) {
+					Indywidualna.dodajLekcje(Integer.parseInt(textField.getText()), LocalDate.now(), type,
+							textField_2.getText(), null, null);
+					JOptionPane.showMessageDialog(null, "Dodano lekcje");
+
+					LekcjeFrame frame = new LekcjeFrame(getContentPane().getSize().width,
+							getContentPane().getSize().height, getContentPane().getBounds().x,
+							getContentPane().getBounds().y, getContentPane().getBounds().width,
+							getContentPane().getBounds().height);
+					dispose();
+				}
+
+			}
+		});
+	}
+}
